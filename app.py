@@ -1,6 +1,6 @@
 from flask import Flask
 
-import router as home_router
+from apps.base import router as home_router
 
 
 def install_app():
