@@ -1,4 +1,4 @@
-import views
+from apps.base import views
 
 
 def install(app):
