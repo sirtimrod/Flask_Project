@@ -7,8 +7,8 @@ def client(app):
 
 
 def test_base():
-    a = 4*5
-    assert a == 20
+    a = 4*5*2
+    assert a == 40
 
 
 def test_get(client):
