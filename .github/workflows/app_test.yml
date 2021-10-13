@@ -35,6 +35,6 @@ jobs:
 #      run: |
 #        pytest
     - name: Generate Report
-        run: |
-          pip install coverage
-          coverage run -m pytest
+      run: |
+        pip install coverage
+        coverage run -m pytest
