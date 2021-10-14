@@ -39,9 +39,8 @@ jobs:
         pip install coverage
         coverage run -m pytest
         coverage report -m
+    - uses: actions/checkout@develop
     - name: Coverage to Codecov
-      steps:
-      - uses: actions/checkout@master
-      - uses: codecov/codecov-action@v2
+      uses: codecov/codecov-action@v2
 
 
