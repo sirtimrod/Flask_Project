@@ -9,4 +9,4 @@ def install_app():
 
     home_router.install(app)
 
-    return app
+    return аpp
