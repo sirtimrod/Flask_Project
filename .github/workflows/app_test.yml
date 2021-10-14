@@ -43,6 +43,6 @@ jobs:
       uses: codecov/codecov-action@v2
       with:
         fail_ci_if_error: true
-        token: ${{ secrets.CODECOV_TOKEN }}
+        token: 9f5aa7bc-0470-49d9-88f7-d3bd3a7d0663
 
 
