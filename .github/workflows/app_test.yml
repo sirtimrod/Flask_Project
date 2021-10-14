@@ -40,6 +40,7 @@ jobs:
         coverage run -m pytest
         coverage report -m
     - name: Coverage to Codecov
-      uses: codecov/codecov-action@v1
+    - uses: actions/checkout@master
+    - uses: codecov/codecov-action@v2
 
 
