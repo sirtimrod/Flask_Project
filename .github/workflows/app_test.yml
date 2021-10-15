@@ -36,11 +36,11 @@ jobs:
         alembic upgrade head
         pip install pytest-cov
         pytest --cov=./ --cov-report=xml
-#    - name: Coverage to Codecov
-#      uses: codecov/codecov-action@v2
-    - name: Coveralls
-      uses: coverallsapp/github-action@master
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Coverage to Codecov
+      uses: codecov/codecov-action@v2
+#    - name: Coveralls
+#      uses: coverallsapp/github-action@master
+#      with:
+#        github-token: ${{ secrets.GITHUB_TOKEN }}
 
 
