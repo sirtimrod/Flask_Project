@@ -7,10 +7,10 @@
     <hr>
         <h2>v1.0.0</h2>
     <hr>
-        {{% if info %}}
+        {% if info %}
             <h3>User IP: {{ info.ip }}</h3>
             <h3>Data: {{ info.created_at }}</h3>
-        {{% endif %}}
+        {% endif %}
     <hr>
 </head>
 <body>
