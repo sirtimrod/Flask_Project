@@ -5,5 +5,5 @@ import pytest
 
 @pytest.fixture
 def app():
-    app = install_app()
+    app = install_app(++)
     return app
