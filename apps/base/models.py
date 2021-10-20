@@ -15,7 +15,6 @@ class Page(Base):
     def add_note(cls, user_ip: str):
         new_note = Page()
         new_note.ip = user_ip
-
         session.add(new_note)
         session.commit()
         return new_note
@@ -27,5 +26,5 @@ class Page(Base):
 
     @classmethod
     def get_all(cls):
-        info = session.query(cls).all()
+        info = session.query(cls).order_by(cls.id.desc()).all()
         return info
