@@ -2,10 +2,11 @@ from sqlalchemy.orm import sessionmaker, scoped_session
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 
+import config
+
 
 # Creating a binding to a DB to work with a DB
-db_path = "sqlite:///base.db"
-engine = create_engine(db_path)
+engine = create_engine(config.SQLALCHEMY_DATABASE_URI)
 
 # Session object
 session = scoped_session(sessionmaker(autocommit=False, autoflush=False, bind=engine))

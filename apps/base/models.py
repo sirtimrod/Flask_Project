@@ -24,3 +24,8 @@ class Page(Base):
     def get_info(cls):
         info = session.query(cls).order_by(cls.id.desc()).first()
         return info
+
+    @classmethod
+    def get_all(cls):
+        info = session.query(cls).all()
+        return info
