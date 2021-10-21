@@ -21,9 +21,9 @@
     <hr>
         {% if info %}
             <table>
-               <tr><th>ID</th><th>IP</th><th>DATE</th></tr>
+               <tr><th>ID</th><th>Internal IP</th><th>External IP</th><th>Country Code</th><th>DATE</th></tr>
                 {% for item in info %}
-                    <tr><td align="center">{{ item.id }}</td><td align="center">{{ item.ip }}</td><td align="center">{{ item.created_at }}</td></tr>
+                    <tr><td align="center">{{ item.id }}</td><td align="center">{{ item.internal_ip }}</td><td align="center">{{ item.external_ip }}</td><td align="center">{{ item.country_code }}</td><td align="center">{{ item.created_at }}</td></tr>
                 {% endfor %}
             </table>
         {% endif %}
