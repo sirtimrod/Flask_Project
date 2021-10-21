@@ -3,7 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Home Page</title>
+    <style>
+       table {
+        width: 100%; /* Ширина таблицы */
+        background: white; /* Цвет фона таблицы */
+        color: white; /* Цвет текста */
+        border-spacing: 1px; /* Расстояние между ячейками */
+       }
+       td, th {
+        background: silver; /* Цвет фона ячеек */
+        padding: 5px; /* Поля вокруг текста */
+       }
+    </style>
     <h1>Hello friend !!!</h1>
+    <hr>
+        <h2>v1.0.0</h2>
+    <hr>
+        {% if info %}
+            <table>
+               <tr><th>ID</th><th>IP</th><th>DATE</th></tr>
+                {% for item in info %}
+                    <tr><td align="center">{{ item.id }}</td><td align="center">{{ item.ip }}</td><td align="center">{{ item.created_at }}</td></tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+    <hr>
 </head>
 <body>
 
