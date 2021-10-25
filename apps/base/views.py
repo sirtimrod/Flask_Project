@@ -10,14 +10,15 @@ class HomeView(MethodView):
 
     def get(self):
 
-        user_ip = request
+        user_data = request
+        external_ip = requests.get('https://api.ipify.org').text
 
-        # external_ip = requests.get('https://api.ipify.org').text
-        user_data = requests.get(f'https://ipinfo.io/?ip={user_ip}').json()
-        # country_code = requests.get(endpoint, verify=True).json()
-        print(vars(user_ip))
+        if 'HTTP_X_FORWARDED_FOR' in vars(user_data):
+            external_ip = user_data.HTTP_X_FORWARDED_FOR
 
-        Page.add_note(user_ip.remote_addr, user_data['ip'], user_data['country'])
+        country_code = 'RU'
+
+        Page.add_note(user_data.remote_addr, external_ip, country_code)
         get_all = Page.get_all()
         items = []
         for i in get_all:
