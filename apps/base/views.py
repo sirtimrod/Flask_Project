@@ -2,7 +2,6 @@ from flask import render_template, request
 from flask.views import MethodView
 
 import requests
-from bs4 import BeautifulSoup
 
 from apps.base.models import Page
 
