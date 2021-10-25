@@ -14,9 +14,8 @@ class HomeView(MethodView):
         print(vars(user_data))
         external_ip = requests.get('https://api64.ipify.org/').text
 
-        if 'http_x_forwarded_for' in vars(user_data):
-            print(True)
-            external_ip = user_data.http_x_forwarded_for
+        if 'HTTP_X_FORWARDED_FOR' in vars(user_data)['environ']:
+            external_ip = user_data.HTTP_X_FORWARDED_FOR
             print('Internal IP inside IF:', user_data.remote_addr)
             print('External IP inside IF:', external_ip)
 
