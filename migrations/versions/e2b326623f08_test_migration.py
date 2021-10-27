@@ -12,7 +12,7 @@ import requests
 
 # revision identifiers, used by Alembic.
 revision = 'e2b326623f08'
-down_revision = 'ac0622a61002'
+down_revision = 'cb8434c45b50'
 branch_labels = None
 depends_on = None
 

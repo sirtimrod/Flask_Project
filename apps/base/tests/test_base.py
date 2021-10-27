@@ -11,6 +11,6 @@ def test_base():
     assert a == 40
 
 
-# def test_get(client):
-#     res = client.get('/')
-#     assert res.status_code == 200
+def test_get(client):
+    res = client.get('/')
+    assert res.status_code == 200
