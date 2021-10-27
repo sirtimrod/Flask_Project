@@ -33,7 +33,7 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Generate Report
       run: |
-#        alembic upgrade head
+#       alembic upgrade head
         pip install pytest-cov
         pytest --cov=./ --cov-report=xml
     - name: Coverage to Codecov
