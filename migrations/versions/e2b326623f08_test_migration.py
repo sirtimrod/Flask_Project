@@ -12,7 +12,7 @@ import requests
 
 # revision identifiers, used by Alembic.
 revision = 'e2b326623f08'
-down_revision = None
+down_revision = 'cb8434c45b50'
 branch_labels = None
 depends_on = None
 
@@ -25,7 +25,6 @@ def get_code(external_ip):
 
 def upgrade():
 
-    op.execute("ALTER TABLE pages DROP COLUMN country_code")
     conn = op.get_bind()
 
     op.add_column('pages', sa.Column('country_code', sa.String(), nullable=True))
