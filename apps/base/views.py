@@ -21,7 +21,11 @@ class HomeView(MethodView):
             country_code = requests.get(f'http://api.ipstack.com/{external_ip}?'
                                         f'access_key=74a3ef2e0e526908b52d42f40bd961ef').json()
 
-        Page.add_note(user_data.remote_addr, external_ip, country_code['country_code'])
+        Page.add_note(
+            user_data.remote_addr,
+            external_ip,
+            country_code['country_code']
+        )
         get_all = Page.get_all()
         items = []
         for i in get_all:

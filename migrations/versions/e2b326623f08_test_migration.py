@@ -12,7 +12,7 @@ import requests
 
 # revision identifiers, used by Alembic.
 revision = 'e2b326623f08'
-down_revision = 'cb8434c45b50'
+down_revision = 'ac0622a61002'
 branch_labels = None
 depends_on = None
 
@@ -37,4 +37,4 @@ def upgrade():
 
 
 def downgrade():
-    op.execute("ALTER TABLE pages DROP COLUMN country_code")
+    op.drop_column('pages', 'country_code')
