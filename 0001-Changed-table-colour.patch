@@ -1,0 +1,33 @@
+From aae0ab60091f5273c4d9ce61642f6317e14c5857 Mon Sep 17 00:00:00 2001
+From: sirtimrod <rodyamilk@gmail.com>
+Date: Thu, 28 Oct 2021 12:37:29 +0300
+Subject: [PATCH] Changed table colour
+
+---
+ templates/base.html | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
+
+diff --git a/templates/base.html b/templates/base.html
+index 372f554..5bb33a6 100644
+--- a/templates/base.html
++++ b/templates/base.html
+@@ -10,10 +10,14 @@
+         color: white; /* Цвет текста */
+         border-spacing: 1px; /* Расстояние между ячейками */
+        }
+-       td, th {
+-        background: silver; /* Цвет фона ячеек */
++       td {
++        background: Pink; /* Цвет фона ячеек */
+         padding: 5px; /* Поля вокруг текста */
+        }
++       th {
++        background: SkyBlue;
++        padding: 5px;
++       }
+     </style>
+     <h1>Hello friend !!!</h1>
+     <hr>
+-- 
+2.25.1
+
