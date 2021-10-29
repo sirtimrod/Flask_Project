@@ -10,7 +10,7 @@ class Page(Base):
     id = sq.Column(sq.Integer, primary_key=True)
     internal_ip = sq.Column(sq.String)
     external_ip = sq.Column(sq.String)
-    country_code = sq.Column(sq.String)
+    country_code = sq.Column(sq.String, nullable=False, server_default="CODE")
     created_at = sq.Column(sq.DateTime, server_default=func.now())
 
     @classmethod
