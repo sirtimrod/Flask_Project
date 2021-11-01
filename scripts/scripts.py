@@ -4,6 +4,6 @@ import config
 
 
 def get_country_code(external_ip):
-    country_code = requests.get(f"{config.COUNTRY_CODE_URL + external_ip}?access_key={config.ACCESS_KEY}").json()
+    country_code = requests.get(config.COUNTRY_CODE_URL + external_ip).json()
 
-    return country_code['country_code']
+    return country_code['countryCode']

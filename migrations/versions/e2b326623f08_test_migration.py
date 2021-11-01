@@ -9,6 +9,7 @@ from alembic import op
 import sqlalchemy as sa
 
 from scripts import scripts
+import random
 
 # revision identifiers, used by Alembic.
 revision = 'e2b326623f08'
@@ -18,26 +19,22 @@ depends_on = None
 
 
 def sql_update(conn):
+
     db_data = conn.execute('SELECT id, external_ip FROM pages')
     results = db_data.fetchall()
 
-    codes = []
-    _ids = []
-
     for res in results:
-        _ids.append(res[0])
-        codes.append(f"WHEN {res[0]} THEN '{scripts.get_country_code(res[1])}'")
-
-    conn.execute(f"UPDATE pages SET country_code = CASE id {' '.join(codes)} END WHERE id IN {tuple(_ids)}")
+        conn.execute(f"UPDATE pages SET country_code = '{scripts.get_country_code(res[1])}' WHERE id = {int(res[0])}")
 
 
 def upgrade():
 
-    op.add_column('pages', sa.Column('country_code', sa.String(), nullable=False, server_default="CODE"))
+    op.add_column('pages', sa.Column('country_code', sa.String(), nullable=False, server_default='CODE'))
 
     conn = op.get_bind()
     sql_update(conn)
 
 
 def downgrade():
-    op.drop_column('pages', 'country_code')
+    # op.drop_column('pages', 'country_code')
+    pass
