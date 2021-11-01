@@ -8,7 +8,7 @@ Create Date: 2021-10-27 11:13:38.759353
 from alembic import op
 import sqlalchemy as sa
 
-import ipapi
+from scripts import scripts
 
 # revision identifiers, used by Alembic.
 revision = 'e2b326623f08'
@@ -23,8 +23,7 @@ def sql_update(conn):
     results = db_data.fetchall()
 
     for res in results:
-        conn.execute(f"UPDATE pages SET country_code = '{ipapi.location(ip=res[1], output='country')}'"
-                     f"WHERE id = {int(res[0])}")
+        conn.execute(f"UPDATE pages SET country_code = '{scripts.get_ip_inf(res[1])}' WHERE id = {int(res[0])}")
 
 
 def upgrade():

@@ -3,7 +3,11 @@ import requests
 import config
 
 
-def get_country_code(external_ip):
-    country_code = requests.get(config.COUNTRY_CODE_URL + external_ip).json()
+def get_ip_inf(external_ip=None):
 
-    return country_code['countryCode']
+    if external_ip:
+        country_code = requests.get(f"{config.IP_INF_URL + external_ip}/country/").text
+        return country_code
+
+    ip_inf = requests.get(f"{config.IP_INF_URL}/json/").json()
+    return ip_inf

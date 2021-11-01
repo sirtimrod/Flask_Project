@@ -8,5 +8,4 @@ if SQLALCHEMY_DATABASE_URI and SQLALCHEMY_DATABASE_URI.startswith("postgres://")
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 SQLALCHEMY_TRACK_MODIFICATIONS = False
-EXTERNAL_IP_URL = 'https://api64.ipify.org/'
-COUNTRY_CODE_URL = 'http://ip-api.com/json/'
+IP_INF_URL = 'https://ipapi.co/'
