@@ -36,5 +36,4 @@ def upgrade():
 
 
 def downgrade():
-    # op.drop_column('pages', 'country_code')
-    pass
+    op.drop_column('pages', 'country_code')
