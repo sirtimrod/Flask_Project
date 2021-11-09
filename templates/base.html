@@ -3,37 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <title>Home Page</title>
-    <style>
-       table {
-        width: 100%; /* Ширина таблицы */
-        background: white; /* Цвет фона таблицы */
-        color: red; /* Цвет текста */
-        border-spacing: 1px; /* Расстояние между ячейками */
-       }
-       td {
-        background: Pink; /* Цвет фона ячеек */
-        padding: 5px; /* Поля вокруг текста */
-       }
-       th {
-        background: SkyBlue;
-        padding: 5px;
-       }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
     <h1>Hello friend !!!</h1>
     <hr>
         <h2>v1.0.0</h2>
     <hr>
-        {% if info %}
-            <table>
-               <tr><th>ID</th><th>Internal IP</th><th>External IP</th><th>Country Code</th><th>DATE</th></tr>
-                {% for item in info %}
-                    <tr><td align="center">{{ item.id }}</td><td align="center">{{ item.internal_ip }}</td><td align="center">{{ item.external_ip }}</td><td align="center">{{ item.country_code }}</td><td align="center">{{ item.created_at }}</td></tr>
-                {% endfor %}
-            </table>
-        {% endif %}
-    <hr>
-</head>
-<body>
+    <table>
+      <thead>
+        <tr>
+          <td>ID</td>
+          <td>Internal IP</td>
+          <td>External IP</td>
+          <td>Country Code</td>
+          <td>DATE</td>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in info %}
+            <tr>
+              <td>{{ item.id }}</td>
+              <td>{{ item.internal_ip }}</td>
+              <td>{{ item.external_ip }}</td>
+              <td>{{ item.country_code }}</td>
+              <td>{{ item.created_at }}</td>
+            </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <nav>
+        <ul class="pagination">
+            {% if prev_url %}
+                <a href="{{ prev_url }}">&laquo;</a>
+            {% else %}
+                <a href="#">&laquo;</a>
+            {% endif %}
 
+            {% if next_url %}
+                <a href="{{ next_url }}">&raquo;</a>
+            {% else %}
+                <a href="#">&raquo;</a>
+            {% endif %}
+        </ul>
+    </nav>
 </body>
 </html>

@@ -1,28 +1,19 @@
 from flask import render_template, request
 from flask.views import MethodView
 
-import requests
-
 from apps.base.models import Page
 from scripts import scripts
-import config
 
 
 class HomeView(MethodView):
 
-    def get(self):
+    def get(self, page):
 
-        ip_inf = scripts.get_ip_inf()
-        external_ip = ip_inf['ip']
-        country_code = ip_inf['country']
+        ip_inf = scripts.get_ip_inf(request)
+        Page.add_note(request.remote_addr, ip_inf['external_ip'], ip_inf['country_code'])
 
-        if 'HTTP_X_FORWARDED_FOR' in request.environ:
-            external_ip = request.environ['HTTP_X_FORWARDED_FOR']
-            country_code = scripts.get_ip_inf(external_ip)
-
-        Page.add_note(request.remote_addr, external_ip, country_code)
-        get_all = Page.get_all()
+        get_all, prev_url, next_url = Page.get_limit(page)
         items = []
         for i in get_all:
             items.append(i)
-        return render_template('base.html', info=items)
+        return render_template('base.html', info=items, prev_url=prev_url, next_url=next_url)

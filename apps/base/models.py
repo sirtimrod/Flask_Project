@@ -1,5 +1,6 @@
 import sqlalchemy as sq
 from sqlalchemy.sql import func
+from flask import url_for
 
 from db import Base, session
 
@@ -32,3 +33,12 @@ class Page(Base):
     def get_all(cls):
         info = session.query(cls).order_by(cls.id.desc()).all()
         return info
+
+    @classmethod
+    def get_limit(cls, page_index):
+        per_page = 30
+        info = session.query(cls).order_by(cls.id.desc()).limit(per_page).offset(((page_index-1)*per_page)).all()
+        pages = session.query(cls).count() // per_page
+        prev_url = url_for('home-page-limit', page=page_index - 1) if page_index > 1 else None
+        next_url = url_for('home-page-limit', page=page_index + 1) if page_index <= pages else None
+        return info, prev_url, next_url
