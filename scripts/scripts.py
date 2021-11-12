@@ -22,7 +22,7 @@ def generated_ip_inf(work):
     ]
 
     if work == 'server':
-        time.sleep(30)
+        time.sleep(10)
         return country_codes_list[random.randint(0, 9)]
 
     if work == 'local':
