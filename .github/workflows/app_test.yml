@@ -34,6 +34,8 @@ jobs:
     - name: Generate Report
       run: |
         alembic upgrade head
+        docker-compose up
+        celery -A celery_worker worker -l INFO
         pip install pytest-cov
         pytest --cov=./ --cov-report=xml
     - name: Coverage to Codecov

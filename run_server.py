@@ -1,7 +1,7 @@
-from app import install_app
+from app import create_app
 
 
-app = install_app()
+app = create_app()
 
 
 @app.teardown_appcontext

@@ -1,0 +1,37 @@
+version: "3.1"
+
+services:
+
+#  web_service:
+#    build:
+#      dockerfile: './Dockerfile'
+#      context: .
+#    command: python run_server.py
+#    volumes:
+#      - .:/usr/src/app
+#    restart: unless-stopped
+#    ports:
+#      - '5000:5000'
+#    depends_on:
+#      - rabbit
+#
+#  worker:
+#    build:
+#      dockerfile: './Dockerfile'
+#      context: .
+#    command: celery -A celery_worker worker -l INFO
+#    volumes:
+#      - .:/usr/src/app
+#    depends_on:
+#      - rabbit
+
+  rabbit:
+#    hostname: rabbit
+    image: rabbitmq:latest
+    restart: unless-stopped
+    environment:
+      - RABBITMQ_DEFAULT_USER=user
+      - RABBITMQ_DEFAULT_PASS=user
+    ports:
+      - "5672:5672"
+      - "15672:15672"

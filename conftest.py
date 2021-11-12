@@ -1,9 +1,9 @@
-from app import install_app
+from app import create_app
 
 import pytest
 
 
 @pytest.fixture
 def app():
-    app = install_app()
+    app = create_app()
     return app

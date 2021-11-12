@@ -10,3 +10,5 @@ if SQLALCHEMY_DATABASE_URI and SQLALCHEMY_DATABASE_URI.startswith("postgres://")
 SECRET_KEY = os.environ.get('SECRET_KEY')
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 IP_INF_URL = 'https://ipapi.co/'
+CELERY_BROKER_URL = 'amqp://user:user@localhost:5672'
+RESULT_BACKEND = "db+" + SQLALCHEMY_DATABASE_URI
