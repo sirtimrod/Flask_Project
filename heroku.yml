@@ -1,0 +1,21 @@
+setup:
+  addons:
+    - plan: heroku-postgresql
+      as: DATABASE
+build:
+  docker:
+    web: Dockerfile
+    worker: Dockerfile
+release:
+  command:
+    - alembic upgrade head
+  image: web
+run:
+  web:
+    command:
+      - gunicorn run_server:app
+    image: web
+  worker:
+    command:
+      - celery -A celery_worker worker --loglevel=info --detach
+    image: worker
