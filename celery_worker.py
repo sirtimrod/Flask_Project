@@ -35,7 +35,7 @@ from celery import Celery
 import config
 
 
-celery_app = Celery('flask_project',
+celery_app = Celery('flask',
                     broker=config.CELERY_BROKER_URL,
                     backend=config.RESULT_BACKEND,
                     include=['scripts.scripts'])
