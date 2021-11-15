@@ -1,3 +1,3 @@
 release: alembic upgrade head
-release: celery -A celery_worker worker --detach
+worker: celery -A celery_worker worker --loglevel=info --beat --detach
 web: gunicorn --bind 0.0.0.0:$PORT run_server:app
