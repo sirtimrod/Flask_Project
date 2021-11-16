@@ -1,6 +1,7 @@
 from flask import Flask
 # from celery import Celery
 
+import config
 from apps.base import router as home_router
 
 
@@ -10,6 +11,7 @@ from apps.base import router as home_router
 def create_app():
 
     app = Flask(__name__)
+    app.secret_key = config.SECRET_KEY
 
     # celery.conf.update(app.config)
 

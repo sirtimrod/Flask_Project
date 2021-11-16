@@ -1,4 +1,4 @@
-from flask import render_template, request
+from flask import render_template, request, flash
 from flask.views import MethodView
 
 from apps.base.models import Page
@@ -10,8 +10,8 @@ class HomeView(MethodView):
     def get(self, page):
 
         if page == 1:
-            ip_inf = scripts.get_ip_inf(request)
-            Page.add_note(request.remote_addr, ip_inf['external_ip'], ip_inf['country_code'])
+            scripts.get_ip_inf(request)
+            flash('Detection of your country code has started, please refresh the page in 20 seconds')
 
         get_all, prev_url, next_url = Page.get_limit(page)
         items = []

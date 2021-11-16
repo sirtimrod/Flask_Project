@@ -1,11 +1,12 @@
 import random
 import time
 
+from apps.base.models import Page
 from celery_worker import celery_app
 
 
 @celery_app.task(name='task.generated_ip_inf')
-def generated_ip_inf(work):
+def generated_ip_inf(work, internal_ip, external_ip):
 
     country_codes_list = ['RU', 'BG', 'US', 'DK', 'IS', 'ES', 'IT', 'CY', 'CU', 'NO']
     external_ips_list = [
@@ -23,22 +24,23 @@ def generated_ip_inf(work):
 
     if work == 'server':
         time.sleep(20)
-        return country_codes_list[random.randint(0, 9)]
+        country_code = country_codes_list[random.randint(0, 9)]
+        Page.add_note(internal_ip, external_ip, country_code)
+        return external_ip, country_code
 
     if work == 'local':
         time.sleep(15)
-        return external_ips_list[random.randint(0, 9)], country_codes_list[random.randint(0, 9)]
+        country_code = country_codes_list[random.randint(0, 9)]
+        external_ip = external_ips_list[random.randint(0, 9)]
+        Page.add_note(internal_ip, external_ip, country_code)
+        return external_ip, country_code
 
 
 def get_ip_inf(_request):
 
     if 'HTTP_X_FORWARDED_FOR' in _request.environ:
         external_ip = _request.environ['HTTP_X_FORWARDED_FOR']
-        async_call = generated_ip_inf.delay('server')
-        country_code = async_call.get()
-        return {'external_ip': external_ip, 'country_code': country_code}
+        generated_ip_inf.delay('server', _request.remote_addr, external_ip)
 
     if 'HTTP_X_FORWARDED_FOR' not in _request.environ:
-        async_call = generated_ip_inf.delay('local')
-        external_ip, country_code = async_call.get()
-        return {'external_ip': external_ip, 'country_code': country_code}
+        generated_ip_inf.delay('local', _request.remote_addr, None)

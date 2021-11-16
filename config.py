@@ -7,7 +7,7 @@ SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL', f"sqlite:///{os.path.jo
 if SQLALCHEMY_DATABASE_URI and SQLALCHEMY_DATABASE_URI.startswith("postgres://"):
     SQLALCHEMY_DATABASE_URI = SQLALCHEMY_DATABASE_URI.replace("postgres://", "postgresql://", 1)
 
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = 'b6822d6fdcd04aaeaeca0bb3522101ed'
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 IP_INF_URL = 'https://ipapi.co/'
 # CELERY_BROKER_URL = 'amqp://user:user@localhost:5672'
